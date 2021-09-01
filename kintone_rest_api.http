@@ -1,0 +1,128 @@
+### kintone REST API Requests - App Records
+@domain = fordmaterials.kintone.com
+@appId = 72
+@apiToken1 = RByeff9tUBBpMPkZnWFuNTiE1ii8nWkPCuOVKTjy
+@userCode = neckert1
+
+### GET/records
+GET https://{{domain}}/k/v1/records.json?app={{appId}}
+X-Cybozu-API-Token: {{apiToken1}}
+
+### POST/records
+POST https://{{domain}}/k/v1/records.json
+X-Cybozu-API-Token: {{apiToken1}}
+Content-Type: application/json
+
+{
+  "app": {{appId}},
+  "records": [
+    {
+      "ParentId": {
+        "value": "6BADCA37-E001-44FC-87C5-1B25D381FC69"
+      },
+      "DataFloat": {
+        "type": "NUMBER",
+        "value": "72074691.7724609"
+      },
+      "RelatedItemId": {
+        "value": "6BADCA37-E001-44FC-87C5-1B25D381FC69"
+      },
+      "Label": {
+        "value": "Tensile Strength"
+      },
+      "Name": {
+        "value": "FOA Project 5%GO + PA66"
+      },
+      "SpecimenId": {
+        "value": "2CBEFCC1-768D-4BF3-8996-A260F83C40C4"
+      },
+      "CreateDate": {
+        "value": "2021-07-01 08:14:56.587"
+      }
+    },
+    {
+      "ParentId": {
+        "value": "14F34F44-F60A-4566-B6EC-F13A4D5216BF"
+      },
+      "DataFloat": {
+        "type": "NUMBER",
+        "value": "0.0543510243296623"
+      },
+      "RelatedItemId": {
+        "value": "14F34F44-F60A-4566-B6EC-F13A4D5216BFD"
+      },
+      "Label": {
+        "value": "% Elongation at Yield"
+      },
+      "Name": {
+        "value": "FOA Project 5%GO + PA66"
+      },
+      "SpecimenId": {
+        "value": "2CBEFCC1-768D-4BF3-8996-A260F83C40C4"
+      },
+      "CreateDate": {
+        "value": "2021-07-01 08:14:56.587"
+      }
+    }
+  ]
+}
+
+### PUT/records
+PUT https://{{domain}}/k/v1/records.json
+X-Cybozu-API-Token: {{apiToken1}}
+Content-Type: application/json
+
+{
+  "app": {{appId}},
+  "records": [
+    {
+      "id": 5,
+      "record": {
+        "DataFloat": {
+          "value": "1"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "record": {
+        "DataFloat": {
+          "value": "2"
+        }
+      }
+    }
+  ]
+}
+
+### DELETE/records
+DELETE https://{{domain}}/k/v1/records.json?app={{appId}}&ids[0]=6
+X-Cybozu-API-Token: {{apiToken1}}
+
+### POST/file
+POST https://{{domain}}/k/v1/file.json
+X-Cybozu-API-Token: {{apiToken1}}
+Content-Type: multipart/form-data; boundary=----20111107kintone20111107cybozucom
+
+------20111107kintone20111107cybozucom
+Content-Disposition: form-data; name="file"; filename="kintone.jpg"
+Content-Type: image/jpeg
+
+< ./kintone.jpg
+------20111107kintone20111107cybozucom--
+
+### PUT/record for updating file
+PUT https://{{domain}}/k/v1/record.json
+X-Cybozu-API-Token: {{apiToken1}}
+Content-Type: application/json
+
+{
+    "app": {{appId}},
+    "id": "8",
+    "record": {
+      "Attachment": {
+        "value": [{
+          "fileKey": "your_file_key"
+        }]
+      }
+    }
+}
